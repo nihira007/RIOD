@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --background: 60 9% 96%;
+  --foreground: 222 25% 11%;
+  --surface: 60 9% 92%;
+  --surface-elevated: 40 20% 99%;
+  --border: 32 12% 84%;
+  --muted-foreground: 220 9% 38%;
+
+  --brand: 42 60% 45%;
+  --brand-foreground: 40 30% 99%;
+
+  --accent-violet: 252 32% 34%;
+  --accent-teal: 165 62% 30%;
+  --accent-rust: 14 62% 45%;
+
+  color-scheme: light;
+}
+
+.dark {
+  --background: 226 24% 7%;
+  --foreground: 42 18% 92%;
+  --surface: 226 20% 10%;
+  --surface-elevated: 227 18% 13%;
+  --border: 226 15% 21%;
+  --muted-foreground: 222 10% 63%;
+
+  --brand: 42 68% 56%;
+  --brand-foreground: 226 24% 8%;
+
+  --accent-violet: 252 48% 72%;
+  --accent-teal: 165 55% 52%;
+  --accent-rust: 14 72% 62%;
+
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  margin: 0;
+  font-family: Manrope, "Segoe UI", sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: hsl(var(--brand) / 0.35);
+  color: hsl(var(--foreground));
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 999px;
+  border: 2px solid hsl(var(--background));
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+:focus-visible {
+  outline: 2px solid hsl(var(--brand));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.hairline {
+  background-image: repeating-linear-gradient(
+    to right,
+    hsl(var(--border)) 0,
+    hsl(var(--border)) 4px,
+    transparent 4px,
+    transparent 9px
+  );
+  height: 1px;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print-root,
+  #print-root * {
+    visibility: visible;
+  }
+  #print-root {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  a {
+    color: black !important;
+    text-decoration: underline;
+  }
+}
